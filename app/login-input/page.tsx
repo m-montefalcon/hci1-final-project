@@ -80,9 +80,9 @@ export default function LoginInputPage() {
     if (method === "phone") {
       value = formatPhoneNumber(value);
 
-      // Limit to +(63) + 10 digits
-      if (value.length > 15) {
-        value = value.substring(0, 15);
+      // Limit to +(63) + 10 digits (16 characters total)
+      if (value.length > 16) {
+        value = value.substring(0, 16);
       }
     }
 
