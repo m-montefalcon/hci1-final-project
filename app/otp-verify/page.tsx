@@ -19,13 +19,13 @@ export default function OTPVerifyPage() {
 
   useEffect(() => {
     if (!method) {
-      router.push("/register");
+      router.push("/");
       return;
     }
 
     const pending = authStore.getPendingVerification();
     if (!pending) {
-      router.push("/register");
+      router.push("/");
       return;
     }
 
@@ -107,7 +107,8 @@ export default function OTPVerifyPage() {
     const result = authStore.verifyOTP(otpString);
 
     if (result.success) {
-      router.push("/login?verified=true");
+      // User is now logged in, redirect to dashboard
+      router.push("/dashboard");
     } else {
       setError(result.error || "Invalid OTP");
       setOtp(["", "", "", "", "", ""]);
@@ -235,11 +236,11 @@ export default function OTPVerifyPage() {
           {/* Back Link */}
           <div className="mt-6 text-center">
             <button
-              onClick={() => router.push("/otp-select")}
+              onClick={() => router.push(`/login-input?method=${method}`)}
               className="text-sm text-gray-600 hover:text-gray-900 cursor-pointer"
               disabled={loading}
             >
-              ← Change verification method
+              ← Change {method === "email" ? "email" : "phone number"}
             </button>
           </div>
         </div>

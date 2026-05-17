@@ -17,13 +17,13 @@ export default function DashboardPage() {
   useEffect(() => {
     const currentUser = authStore.getCurrentUser();
     if (!currentUser) {
-      router.push("/login");
+      router.push("/");
     }
   }, [router]);
 
   const handleLogout = () => {
     authStore.logout();
-    router.push("/login");
+    router.push("/");
   };
 
   if (!user) return null;
@@ -126,7 +126,7 @@ export default function DashboardPage() {
               <h3 className="font-semibold text-gray-900 mb-2">Account Info</h3>
               <div className="space-y-2 text-sm">
                 <div>
-                  <span className="text-gray-600">Email:</span>
+                  <span className="text-gray-600">Account</span>
                   <p className="text-gray-900 wrap-break-word">{user.email}</p>
                 </div>
                 <div>
